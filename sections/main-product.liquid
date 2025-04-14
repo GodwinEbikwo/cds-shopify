@@ -15,6 +15,7 @@
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'dynamic-colors.css' | asset_url | stylesheet_tag }}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -41,6 +42,7 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'dynamic-colors.js' | asset_url }}" defer="defer"></script>
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -74,7 +76,7 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
-    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %} product-page">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
@@ -82,6 +84,9 @@
         <section
           id="ProductInfo-{{ section.id }}"
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+          data-primary-color="{{ product.metafields.custom.primary_color }}"
+          data-secondary-color="{{ product.metafields.custom.secondary_color }}"
+          data-accent-color="{{ product.metafields.custom.accent_color }}"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
@@ -192,9 +197,51 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
-                {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                    {{ product.description }}
+                <div class="product__description rte" {{ block.shopify_attributes }}>
+                  {{ product.description }}
+                </div>
+
+                {%- if product.metafields.custom.sizing_info
+                  or product.metafields.custom.care_instructions
+                  or product.metafields.custom.materials
+                  or product.metafields.custom.shipping_info
+                -%}
+                  <div class="product__additional-info">
+                    {%- if product.metafields.custom.sizing_info -%}
+                      <div class="product__info-section">
+                        <h3 class="product__info-title">Sizing Information</h3>
+                        <div class="product__info-content rte">
+                          {{ product.metafields.custom.sizing_info }}
+                        </div>
+                      </div>
+                    {%- endif -%}
+
+                    {%- if product.metafields.custom.care_instructions -%}
+                      <div class="product__info-section">
+                        <h3 class="product__info-title">Care Instructions</h3>
+                        <div class="product__info-content rte">
+                          {{ product.metafields.custom.care_instructions }}
+                        </div>
+                      </div>
+                    {%- endif -%}
+
+                    {%- if product.metafields.custom.materials -%}
+                      <div class="product__info-section">
+                        <h3 class="product__info-title">Materials</h3>
+                        <div class="product__info-content rte">
+                          {{ product.metafields.custom.materials }}
+                        </div>
+                      </div>
+                    {%- endif -%}
+
+                    {%- if product.metafields.custom.shipping_info -%}
+                      <div class="product__info-section">
+                        <h3 class="product__info-title">Shipping Information</h3>
+                        <div class="product__info-content rte">
+                          {{ product.metafields.custom.shipping_info }}
+                        </div>
+                      </div>
+                    {%- endif -%}
                   </div>
                 {%- endif -%}
               {%- when 'sku' -%}
@@ -356,7 +403,10 @@
                                 </dt>
                                 <dd>
                                   <span class="price-per-item--current">
-                                    {{- 'products.product.volume_pricing.price_at_each_html' | t: price: variant_price -}}
+                                    {{-
+                                      'products.product.volume_pricing.price_at_each_html'
+                                      | t: price: variant_price
+                                    -}}
                                   </span>
                                 </dd>
                               </dl>
@@ -1674,7 +1724,7 @@
         {
           "type": "header",
           "content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_2.label"
-        },        
+        },
         {
           "type": "select",
           "id": "icon_2",
@@ -1874,7 +1924,7 @@
         {
           "type": "header",
           "content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_3.label"
-        },        
+        },
         {
           "type": "select",
           "id": "icon_3",
@@ -2176,7 +2226,7 @@
       ],
       "default": "hide",
       "label": "t:sections.main-product.settings.mobile_thumbnails.label"
-    },    
+    },
     {
       "type": "select",
       "id": "media_position",

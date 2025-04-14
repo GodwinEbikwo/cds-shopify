@@ -1,0 +1,113 @@
+:root {
+    --dynamic-primary-color: var(--color-base-text);
+    --dynamic-secondary-color: var(--color-base-background-1);
+    --dynamic-accent-color: var(--color-base-button-text);
+}
+
+/* Dynamic color scheme for product page */
+.product-page {
+    --button-background: var(--dynamic-primary-color);
+    --button-text: var(--dynamic-secondary-color);
+    --button-hover: var(--dynamic-accent-color);
+}
+
+/* Dynamic color scheme for header */
+.header {
+    --header-background: var(--dynamic-primary-color);
+    --header-text: var(--dynamic-secondary-color);
+}
+
+/* Dynamic color scheme for footer */
+.footer {
+    --footer-background: var(--dynamic-primary-color);
+    --footer-text: var(--dynamic-secondary-color);
+}
+
+/* Apply dynamic colors to buttons */
+.product-form__submit,
+.shopify-payment-button__button {
+    background-color: var(--button-background) !important;
+    color: var(--button-text) !important;
+    border-color: var(--button-background) !important;
+}
+
+.product-form__submit:hover,
+.shopify-payment-button__button:hover {
+    background-color: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+}
+
+/* Apply dynamic colors to header */
+.header-wrapper {
+    background-color: var(--dynamic-primary-color) !important;
+}
+
+.header__heading-link,
+.header__menu-item {
+    color: var(--dynamic-secondary-color) !important;
+}
+
+/* Apply dynamic colors to footer */
+.footer {
+    background-color: var(--dynamic-primary-color) !important;
+    color: var(--dynamic-secondary-color) !important;
+}
+
+.footer__heading,
+.footer-block__heading,
+.footer-block__details-content a {
+    color: var(--dynamic-secondary-color) !important;
+}
+
+/* Add transition for smooth color changes */
+.header-wrapper,
+.footer,
+.product-form__submit,
+.shopify-payment-button__button {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Product Additional Information Styles */
+.product__additional-info {
+    margin-top: 2rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.08);
+    padding-top: 2rem;
+}
+
+.product__info-section {
+    margin-bottom: 2rem;
+}
+
+.product__info-section:last-child {
+    margin-bottom: 0;
+}
+
+.product__info-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--dynamic-primary-color);
+}
+
+.product__info-content {
+    font-size: 1.4rem;
+    line-height: 1.5;
+}
+
+.product__info-content p {
+    margin-bottom: 1rem;
+}
+
+.product__info-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 749px) {
+    .product__info-title {
+        font-size: 1.4rem;
+    }
+
+    .product__info-content {
+        font-size: 1.2rem;
+    }
+}
