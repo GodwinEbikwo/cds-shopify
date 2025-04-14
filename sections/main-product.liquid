@@ -208,38 +208,66 @@
                 -%}
                   <div class="product__additional-info">
                     {%- if product.metafields.custom.sizing_info -%}
-                      <div class="product__info-section">
-                        <h3 class="product__info-title">Sizing Information</h3>
-                        <div class="product__info-content rte">
-                          {{ product.metafields.custom.sizing_info }}
-                        </div>
+                      <div class="product__info-section accordion">
+                        <details>
+                          <summary>
+                            <div class="summary__title">
+                              <h3 class="product__info-title">Sizing Information</h3>
+                            </div>
+                            {{ 'icon-caret.svg' | inline_asset_content }}
+                          </summary>
+                          <div class="product__info-content rte">
+                            {{ product.metafields.custom.sizing_info }}
+                          </div>
+                        </details>
                       </div>
                     {%- endif -%}
 
                     {%- if product.metafields.custom.care_instructions -%}
-                      <div class="product__info-section">
-                        <h3 class="product__info-title">Care Instructions</h3>
-                        <div class="product__info-content rte">
-                          {{ product.metafields.custom.care_instructions }}
-                        </div>
+                      <div class="product__info-section accordion">
+                        <details>
+                          <summary>
+                            <div class="summary__title">
+                              <h3 class="product__info-title">Care Instructions</h3>
+                            </div>
+                            {{ 'icon-caret.svg' | inline_asset_content }}
+                          </summary>
+                          <div class="product__info-content rte">
+                            {{ product.metafields.custom.care_instructions }}
+                          </div>
+                        </details>
                       </div>
                     {%- endif -%}
 
                     {%- if product.metafields.custom.materials -%}
-                      <div class="product__info-section">
-                        <h3 class="product__info-title">Materials</h3>
-                        <div class="product__info-content rte">
-                          {{ product.metafields.custom.materials }}
-                        </div>
+                      <div class="product__info-section accordion">
+                        <details>
+                          <summary>
+                            <div class="summary__title">
+                              <h3 class="product__info-title">Materials</h3>
+                            </div>
+                            {{ 'icon-caret.svg' | inline_asset_content }}
+                          </summary>
+                          <div class="product__info-content rte">
+                            {{ product.metafields.custom.materials }}
+                          </div>
+                        </details>
                       </div>
                     {%- endif -%}
 
                     {%- if product.metafields.custom.shipping_info -%}
-                      <div class="product__info-section">
-                        <h3 class="product__info-title">Shipping Information</h3>
-                        <div class="product__info-content rte">
-                          {{ product.metafields.custom.shipping_info }}
-                        </div>
+                      <div class="product__info-section accordion">
+                        <details>
+                          <summary>
+                            <div class="summary__title">
+                              <h3 class="product__info-title">Shipping Information</h3>
+                            </div>
+                            {{ 'icon-caret.svg' | inline_asset_content }}
+                          </summary>
+                          <div class="product__info-content rte">
+                            {{ product.metafields.custom.shipping_info }}
+                          </div>
+                        </details>
                       </div>
                     {%- endif -%}
                   </div>
