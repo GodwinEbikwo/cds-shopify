@@ -647,11 +647,61 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mega Menu Settings"
+    },
+    {
+      "type": "text",
+      "id": "featured_collections_title",
+      "label": "Featured Collections Title",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "collection_list",
+      "id": "featured_collections",
+      "label": "Featured Collections",
+      "limit": 8
+    },
+    {
+      "type": "text",
+      "id": "featured_products_title",
+      "label": "Featured Products Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "product_list",
+      "id": "featured_products",
+      "label": "Featured Products",
+      "limit": 3
     }
   ],
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "featured_product",
+      "name": "Featured Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Shop now"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.header.presets.name"
     }
   ]
 }

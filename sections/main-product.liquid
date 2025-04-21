@@ -201,55 +201,55 @@
                   {{ product.description }}
                 </div>
 
-                {%- if product.metafields.custom.sizing_info
-                  or product.metafields.custom.care_instructions
-                  or product.metafields.custom.materials
+                {%- if product.metafields.custom.pourquoi_choisir_ce_gout
+                  or product.metafields.custom.conseils_d_utilisation
+                  or product.metafields.custom.caract_ristiques_techniques
                   or product.metafields.custom.shipping_info
                 -%}
                   <div class="product__additional-info">
-                    {%- if product.metafields.custom.sizing_info -%}
+                    {%- if product.metafields.custom.pourquoi_choisir_ce_gout -%}
                       <div class="product__info-section accordion">
                         <details>
                           <summary>
                             <div class="summary__title">
-                              <h3 class="product__info-title">Sizing Information</h3>
+                              <h3 class="product__info-title">Pourquoi choisir ce goût?</h3>
+                              {{ 'icon-caret.svg' | inline_asset_content }}
                             </div>
-                            {{ 'icon-caret.svg' | inline_asset_content }}
                           </summary>
                           <div class="product__info-content rte">
-                            {{ product.metafields.custom.sizing_info }}
+                            {{ product.metafields.custom.pourquoi_choisir_ce_gout | metafield_tag }}
                           </div>
                         </details>
                       </div>
                     {%- endif -%}
 
-                    {%- if product.metafields.custom.care_instructions -%}
+                    {%- if product.metafields.custom.conseils_d_utilisation -%}
                       <div class="product__info-section accordion">
                         <details>
                           <summary>
                             <div class="summary__title">
-                              <h3 class="product__info-title">Care Instructions</h3>
+                              <h3 class="product__info-title">Conseils d'utilisation</h3>
+                              {{ 'icon-caret.svg' | inline_asset_content }}
                             </div>
-                            {{ 'icon-caret.svg' | inline_asset_content }}
                           </summary>
                           <div class="product__info-content rte">
-                            {{ product.metafields.custom.care_instructions }}
+                            {{ product.metafields.custom.conseils_d_utilisation | metafield_tag }}
                           </div>
                         </details>
                       </div>
                     {%- endif -%}
 
-                    {%- if product.metafields.custom.materials -%}
+                    {%- if product.metafields.custom.caract_ristiques_techniques -%}
                       <div class="product__info-section accordion">
                         <details>
                           <summary>
                             <div class="summary__title">
-                              <h3 class="product__info-title">Materials</h3>
+                              <h3 class="product__info-title">Caractéristiques techniques</h3>
+                              {{ 'icon-caret.svg' | inline_asset_content }}
                             </div>
-                            {{ 'icon-caret.svg' | inline_asset_content }}
                           </summary>
                           <div class="product__info-content rte">
-                            {{ product.metafields.custom.materials }}
+                            {{ product.metafields.custom.caract_ristiques_techniques | metafield_tag }}
                           </div>
                         </details>
                       </div>
@@ -261,11 +261,11 @@
                           <summary>
                             <div class="summary__title">
                               <h3 class="product__info-title">Shipping Information</h3>
+                              {{ 'icon-caret.svg' | inline_asset_content }}
                             </div>
-                            {{ 'icon-caret.svg' | inline_asset_content }}
                           </summary>
                           <div class="product__info-content rte">
-                            {{ product.metafields.custom.shipping_info }}
+                            {{ product.metafields.custom.shipping_info | metafield_tag }}
                           </div>
                         </details>
                       </div>
@@ -648,7 +648,7 @@
                                 <ul class="list-unstyled" role="list">
                                   {%- for product in recommendations.products
                                     limit: block.settings.products_per_page
-                                    offset: continue
+                                    offset: forloop.index0
                                   -%}
                                     <li>
                                       {%- if block.settings.enable_quick_add -%}

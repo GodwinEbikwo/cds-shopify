@@ -1,5 +1,5 @@
 {% comment %}
-  Renders a megamenu for the header.
+  Renders a megamenu for the header with dynamic product images and shop now buttons.
 
   Usage:
   {% render 'header-mega-menu' %}
@@ -23,50 +23,106 @@
                 >
                   {{- link.title | escape -}}
                 </span>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
+                {% render 'icon-caret' %}
               </summary>
+
               <div
                 id="MegaMenu-Content-{{ forloop.index }}"
                 class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
                 tabindex="-1"
               >
-                <ul
-                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
-                  role="list"
-                >
-                  {%- for childlink in link.links -%}
-                    <li>
-                      <a
-                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
-                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
+                <div class="mega-menu__container page-width">
+                  <!-- Left side categories -->
+                  <div class="mega-menu__categories">
+                    {%- for childlink in link.links -%}
+                      <div class="mega-menu__category-group">
+                        <h3 class="mega-menu__category-title">{{ childlink.title | escape }}</h3>
+                        {%- if childlink.links != blank -%}
+                          <ul class="mega-menu__category-links" role="list">
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="mega-menu__link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  {{ grandchildlink.title | escape }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+
+                        {% if childlink.url contains 'collections/all'
+                          or childlink.url contains '/collections'
+                          and childlink.url.size < 25
+                        %}
+                          <a href="{{ childlink.url }}" class="mega-menu__link mega-menu__shop-all">Shop all</a>
                         {% endif %}
-                      >
-                        {{ childlink.title | escape }}
-                      </a>
-                      {%- if childlink.links != blank -%}
-                        <ul class="list-unstyled" role="list">
-                          {%- for grandchildlink in childlink.links -%}
-                            <li>
-                              <a
-                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                href="{{ grandchildlink.url }}"
-                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
-                                {% if grandchildlink.current %}
-                                  aria-current="page"
-                                {% endif %}
+                      </div>
+                    {%- endfor -%}
+                  </div>
+
+                  <!-- Right side featured products -->
+                  {% if section.settings.featured_products != blank %}
+                    <div class="mega-menu__featured-products">
+                      {% for product in section.settings.featured_products %}
+                        <div class="mega-menu__featured-product">
+                          <div class="mega-menu__product-image">
+                            {% if product.featured_image != blank %}
+                              <img
+                                src="{{ product.featured_image | image_url: width: 250, height: 250, crop: 'center' }}"
+                                alt="{{ product.title | escape }}"
+                                loading="lazy"
+                                width="250"
+                                height="250"
                               >
-                                {{ grandchildlink.title | escape }}
-                              </a>
-                            </li>
-                          {%- endfor -%}
-                        </ul>
-                      {%- endif -%}
-                    </li>
-                  {%- endfor -%}
-                </ul>
+                            {% else %}
+                              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                            {% endif %}
+                          </div>
+                          <h4 class="mega-menu__product-title">{{ product.title }}</h4>
+                          <a href="{{ product.url }}" class="mega-menu__shop-now-button">
+                            {{ 'products.product.add_to_cart' | t }}
+                          </a>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+
+                  <!-- Alternative: Featured Products from Section Blocks -->
+                  {% if section.blocks.size > 0 and section.settings.featured_products == blank %}
+                    <div class="mega-menu__featured-products">
+                      {% for block in section.blocks %}
+                        {% if block.type == 'featured_product' and block.settings.product != blank %}
+                          {% assign product = block.settings.product %}
+                          <div class="mega-menu__featured-product" {{ block.shopify_attributes }}>
+                            <div class="mega-menu__product-image">
+                              {% if product.featured_image != blank %}
+                                <img
+                                  src="{{ product.featured_image | image_url: width: 300, height: 300, crop: 'center' }}"
+                                  alt="{{ product.title | escape }}"
+                                  loading="lazy"
+                                  width="300"
+                                  height="300"
+                                >
+                              {% else %}
+                                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                              {% endif %}
+                            </div>
+                            <h4 class="mega-menu__product-title">{{ product.title }}</h4>
+                            <a href="{{ product.url }}" class="mega-menu__shop-now-button">
+                              {{ block.settings.button_label | default: 'Shop now' }}
+                            </a>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
               </div>
             </details>
           </header-menu>

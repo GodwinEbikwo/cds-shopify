@@ -9,6 +9,7 @@
     --button-background: var(--dynamic-primary-color);
     --button-text: var(--dynamic-secondary-color);
     --button-hover: var(--dynamic-accent-color);
+    --button-border: var(--dynamic-primary-color);
 }
 
 /* Dynamic color scheme for header */
@@ -25,16 +26,18 @@
 
 /* Apply dynamic colors to buttons */
 .product-form__submit,
-.shopify-payment-button__button {
+.shopify-payment-button__button,
+.shopify-payment-button__button--unbranded {
     background-color: var(--button-background) !important;
     color: var(--button-text) !important;
-    border-color: var(--button-background) !important;
+    /* border: 1px solid var(--dynamic-primary-color) !important; */
 }
 
 .product-form__submit:hover,
-.shopify-payment-button__button:hover {
+.shopify-payment-button__button:hover,
+.shopify-payment-button__button--unbranded:hover {
     background-color: var(--button-hover) !important;
-    border-color: var(--button-hover) !important;
+    border-color: var(--dynamic-primary-color) !important;
 }
 
 /* Apply dynamic colors to header */
@@ -155,3 +158,84 @@
         padding: 1.2rem;
     }
 }
+
+/* Dynamic color scheme for product page */
+.product-page {
+    --button-background: var(--dynamic-primary-color);
+    --button-text: var(--dynamic-secondary-color);
+    --button-hover: var(--dynamic-accent-color);
+}
+
+/* Dynamic color scheme for variant pills */
+.product-form__input--pill input[type='radio']+label {
+    border-color: var(--dynamic-primary-color) !important;
+    color: var(--dynamic-primary-color) !important;
+    background-color: transparent !important;
+}
+
+.product-form__input--pill input[type='radio']:checked+label {
+    background-color: var(--dynamic-primary-color) !important;
+    color: rgb(var(--color-background)) !important;
+    border-color: var(--dynamic-primary-color) !important;
+}
+
+.product-form__input--pill input[type='radio']:hover+label {
+    border-color: var(--dynamic-primary-color) !important;
+    color: var(--dynamic-primary-color) !important;
+}
+
+.product-form__input--pill input[type='radio']:checked:hover+label {
+    background-color: var(--dynamic-primary-color) !important;
+    border-color: var(--dynamic-primary-color) !important;
+}
+
+/* Dynamic color scheme for swatch variants */
+.product-form__input--swatch .swatch-input__input+.swatch-input__label {
+    border-color: var(--dynamic-primary-color) !important;
+}
+
+.product-form__input--swatch .swatch-input__input:checked+.swatch-input__label {
+    outline-color: var(--dynamic-primary-color) !important;
+}
+
+.product-form__input--swatch .swatch-input__input:hover+.swatch-input__label {
+    border-color: var(--dynamic-primary-color) !important;
+}
+
+.product-form__input--swatch .swatch-input__input:checked:hover+.swatch-input__label {
+    outline-color: var(--dynamic-primary-color) !important;
+}
+
+/* Dynamic color scheme for header */
+
+/* Product title styling */
+.product__title h1,
+.product__title h2,
+.product__title .h1 {
+    color: var(--dynamic-primary-color) !important;
+}
+
+/* Dynamic color scheme for mega menu */
+.mega-menu__content {
+    background-color: #fff !important;
+}
+
+.mega-menu__link {
+    color: var(--dynamic-primary-color) !important;
+}
+
+.mega-menu__link:hover,
+.mega-menu__link--active {
+    color: var(--dynamic-accent-color) !important;
+}
+
+.mega-menu__category-title {
+    color: var(--dynamic-primary-color) !important;
+}
+
+/* 
+NEXT_PUBLIC_SUPABASE_URL=https://nolfnrrlowtzznnnknbe.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vbGZucnJsb3d0enpubm5rbmJlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI5MTQyOTAsImV4cCI6MjA1ODQ5MDI5MH0.3yXdhELBxf6XwIv44LD2VzLEFvV97miaoKWtHFJwjtw
+ */
+
+ 
