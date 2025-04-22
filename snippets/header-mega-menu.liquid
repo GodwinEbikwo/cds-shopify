@@ -56,72 +56,136 @@
                           </ul>
                         {%- endif -%}
 
-                        {% if childlink.url contains 'collections/all'
-                          or childlink.url contains '/collections'
-                          and childlink.url.size < 25
-                        %}
-                          <a href="{{ childlink.url }}" class="mega-menu__link mega-menu__shop-all">Shop all</a>
+                        {% assign trigger_text = 'Shop All' %}
+                        {% if childlink.url contains 'collections/Kits' %}
+                          {% assign trigger_text = 'Kits' %}
+                        {% elsif childlink.url contains 'collections/E-Liquides' %}
+                          {% assign trigger_text = 'E-Liquides' %}
+                        {% elsif childlink.url contains 'collections/Accessories' %}
+                          {% assign trigger_text = 'Accessories' %}
+                        {% elsif childlink.url contains 'collections/Drifter' %}
+                          {% assign trigger_text = 'Drifter' %}
+                        {% elsif childlink.url contains 'collections/Specials' %}
+                          {% assign trigger_text = 'Specials' %}
+                        {% endif %}
+
+                        {% if childlink.url contains '/collections' %}
+                          <a href="{{ childlink.url }}" class="mega-menu__link mega-menu__shop-all">
+                            {{- trigger_text -}}
+                          </a>
                         {% endif %}
                       </div>
                     {%- endfor -%}
                   </div>
 
-                  <!-- Right side featured products -->
-                  {% if section.settings.featured_products != blank %}
-                    <div class="mega-menu__featured-products">
-                      {% for product in section.settings.featured_products %}
-                        <div class="mega-menu__featured-product">
-                          <div class="mega-menu__product-image">
-                            {% if product.featured_image != blank %}
-                              <img
-                                src="{{ product.featured_image | image_url: width: 250, height: 250, crop: 'center' }}"
-                                alt="{{ product.title | escape }}"
-                                loading="lazy"
-                                width="250"
-                                height="250"
-                              >
-                            {% else %}
-                              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                            {% endif %}
-                          </div>
-                          <h4 class="mega-menu__product-title">{{ product.title }}</h4>
-                          <a href="{{ product.url }}" class="mega-menu__shop-now-button">
-                            {{ 'products.product.add_to_cart' | t }}
-                          </a>
-                        </div>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
+                  <!-- Collection-specific featured products -->
+                  <div class="mega-menu__featured-products">
+                    {% assign current_collection = '' %}
 
-                  <!-- Alternative: Featured Products from Section Blocks -->
-                  {% if section.blocks.size > 0 and section.settings.featured_products == blank %}
-                    <div class="mega-menu__featured-products">
-                      {% for block in section.blocks %}
-                        {% if block.type == 'featured_product' and block.settings.product != blank %}
-                          {% assign product = block.settings.product %}
-                          <div class="mega-menu__featured-product" {{ block.shopify_attributes }}>
-                            <div class="mega-menu__product-image">
-                              {% if product.featured_image != blank %}
-                                <img
-                                  src="{{ product.featured_image | image_url: width: 300, height: 300, crop: 'center' }}"
-                                  alt="{{ product.title | escape }}"
-                                  loading="lazy"
-                                  width="300"
-                                  height="300"
-                                >
-                              {% else %}
-                                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                              {% endif %}
-                            </div>
-                            <h4 class="mega-menu__product-title">{{ product.title }}</h4>
-                            <a href="{{ product.url }}" class="mega-menu__shop-now-button">
-                              {{ block.settings.button_label | default: 'Shop now' }}
-                            </a>
+                    {% if link.url contains '/collections/' %}
+                      {% assign current_collection = link.url | split: '/collections/' | last | downcase %}
+                    {% endif %}
+
+                    {% case current_collection %}
+                      {% when '' %}
+                        {% if section.settings.featured_products != blank %}
+                          <div class="mega-menu__products-grid">
+                            {% for product in section.settings.featured_products limit: 3 %}
+                              {% render 'mega-menu-product-card', product: product %}
+                            {% endfor %}
                           </div>
                         {% endif %}
-                      {% endfor %}
-                    </div>
-                  {% endif %}
+                      {% when 'kits' %}
+                        {% if section.settings.kits_featured_products != blank %}
+                          <div class="mega-menu__products-grid">
+                            {% for product in section.settings.kits_featured_products limit: 3 %}
+                              {% render 'mega-menu-product-card', product: product %}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {% when 'e-liquides' %}
+                        {% if section.settings.eliquids_featured_products != blank %}
+                          <div class="mega-menu__products-grid">
+                            {% for product in section.settings.eliquids_featured_products limit: 3 %}
+                              {% render 'mega-menu-product-card', product: product %}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {% when 'accessories' %}
+                        {% if section.settings.accessories_featured_products != blank %}
+                          <div class="mega-menu__products-grid">
+                            {% for product in section.settings.accessories_featured_products limit: 3 %}
+                              {% render 'mega-menu-product-card', product: product %}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {% when 'drifter' %}
+                        {% if section.settings.drifter_featured_products != blank %}
+                          <div class="mega-menu__products-grid">
+                            {% for product in section.settings.drifter_featured_products limit: 3 %}
+                              {% render 'mega-menu-product-card', product: product %}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {% when 'specials' %}
+                        {% if section.settings.specials_featured_products != blank %}
+                          <div class="mega-menu__products-grid">
+                            {% for product in section.settings.specials_featured_products limit: 3 %}
+                              {% render 'mega-menu-product-card', product: product %}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {% else %}
+                        {% for childlink in link.links %}
+                          {% if childlink.url contains '/collections/' and forloop.first %}
+                            {% assign collection_handle = childlink.url | split: '/collections/' | last | downcase %}
+
+                            {% case collection_handle %}
+                              {% when 'kits' %}
+                                {% if section.settings.kits_featured_products != blank %}
+                                  <div class="mega-menu__products-grid">
+                                    {% for product in section.settings.kits_featured_products limit: 3 %}
+                                      {% render 'mega-menu-product-card', product: product %}
+                                    {% endfor %}
+                                  </div>
+                                {% endif %}
+                              {% when 'e-liquides' %}
+                                {% if section.settings.eliquids_featured_products != blank %}
+                                  <div class="mega-menu__products-grid">
+                                    {% for product in section.settings.eliquids_featured_products limit: 3 %}
+                                      {% render 'mega-menu-product-card', product: product %}
+                                    {% endfor %}
+                                  </div>
+                                {% endif %}
+                              {% when 'accessories' %}
+                                {% if section.settings.accessories_featured_products != blank %}
+                                  <div class="mega-menu__products-grid">
+                                    {% for product in section.settings.accessories_featured_products limit: 3 %}
+                                      {% render 'mega-menu-product-card', product: product %}
+                                    {% endfor %}
+                                  </div>
+                                {% endif %}
+                              {% when 'drifter' %}
+                                {% if section.settings.drifter_featured_products != blank %}
+                                  <div class="mega-menu__products-grid">
+                                    {% for product in section.settings.drifter_featured_products limit: 3 %}
+                                      {% render 'mega-menu-product-card', product: product %}
+                                    {% endfor %}
+                                  </div>
+                                {% endif %}
+                              {% when 'specials' %}
+                                {% if section.settings.specials_featured_products != blank %}
+                                  <div class="mega-menu__products-grid">
+                                    {% for product in section.settings.specials_featured_products limit: 3 %}
+                                      {% render 'mega-menu-product-card', product: product %}
+                                    {% endfor %}
+                                  </div>
+                                {% endif %}
+                            {% endcase %}
+                          {% endif %}
+                        {% endfor %}
+                    {% endcase %}
+                  </div>
                 </div>
               </div>
             </details>
