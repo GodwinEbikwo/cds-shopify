@@ -1,0 +1,626 @@
+{% schema %}
+{
+  "name": "FAQ Section",
+  "tag": "section",
+  "class": "faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Get answers to the most common questions about our products and vaping."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#00e5ff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ],
+      "default": "text-center"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 600,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Content Max Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "items_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Number of FAQs to show initially",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "Enable smooth animations",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How long do your vape devices last?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Our devices are built to last. With proper care and maintenance, our devices typically last 1-2 years. Battery life per charge varies by model.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your e-liquids safe?",
+            "answer": "<p>Yes, all our e-liquids are manufactured in FDA-registered facilities using high-quality, pharmaceutical-grade ingredients. We conduct thorough testing for purity and consistency.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer international shipping?",
+            "answer": "<p>Yes, we ship to most countries worldwide. International shipping typically takes 7-14 business days depending on your location. Please note that some countries have restrictions on vaping products.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day satisfaction guarantee on all our products. If you're not completely satisfied, you can return unused items in their original packaging for a full refund or exchange.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .faq-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .faq-container {
+    max-width: {{ section.settings.content_max_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section-heading {
+    text-align: {{ section.settings.text_alignment | replace: 'text-', '' }};
+    margin-bottom: 60px;
+  }
+
+  .section-heading h2 {
+    font-size: 42px;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 20px;
+  }
+
+  .section-heading p {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    margin-top: 40px;
+  }
+
+  .faq-item {
+    background-color: {{ section.settings.background_color | color_lighten: 5 }};
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  details {
+    border: none;
+  }
+
+  summary {
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    text-align: left;
+    color: {{ section.settings.text_color }};
+    font-family: inherit;
+  }
+
+  summary:hover {
+    color: {{ section.settings.accent_color }};
+  }
+
+  .icon-caret {
+    display: inline-block;
+    transition: transform 0.3s;
+    margin-left: 1rem;
+  }
+
+  details[open] .icon-caret {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 20px 20px;
+    color: {{ section.settings.text_color | color_modify: 'alpha', 0.85 }};
+  }
+
+  .show-more-button {
+    display: block;
+    margin: 30px auto 0;
+    padding: 12px 24px;
+    background-color: {{ section.settings.accent_color }};
+    color: {{ section.settings.text_color }};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
+  }
+
+  .show-more-button:hover {
+    opacity: 0.9;
+  }
+
+  .hidden-faq {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .section-heading h2 {
+      font-size: 32px;
+    }
+
+    .section-heading p {
+      font-size: 16px;
+    }
+
+    summary {
+      font-size: 18px;
+    }
+  }
+</style>
+
+<section class="faq-section" id="shopify-section-{{ section.id }}">
+  <div class="faq-container">
+    <div class="section-heading">
+      <h2>{{ section.settings.heading }}</h2>
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+    <div class="faq-list" data-items-to-show="{{ section.settings.items_to_show }}">
+      {% for block in section.blocks %}
+        {% if block.type == 'faq_item' %}
+          <div
+            class="faq-item {% if forloop.index > section.settings.items_to_show %}hidden-faq{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <details>
+              <summary>
+                <span>{{ block.settings.question }}</span>
+                <span class="icon-caret">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+              </summary>
+              <div class="faq-answer">
+                {{ block.settings.answer }}
+              </div>
+            </details>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if section.blocks.size > section.settings.items_to_show %}
+      <button
+        class="show-more-button"
+        onclick="this.previousElementSibling.querySelectorAll('.hidden-faq').forEach(item => item.classList.remove('hidden-faq')); this.style.display='none';"
+      >
+        Show More FAQs
+      </button>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "tag": "section",
+  "class": "faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Get answers to the most common questions about our products and vaping."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#00e5ff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ],
+      "default": "text-center"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 600,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Content Max Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "items_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Number of FAQs to show initially",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "Enable smooth animations",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How long do your vape devices last?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Our devices are built to last. With proper care and maintenance, our devices typically last 1-2 years. Battery life per charge varies by model.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your e-liquids safe?",
+            "answer": "<p>Yes, all our e-liquids are manufactured in FDA-registered facilities using high-quality, pharmaceutical-grade ingredients. We conduct thorough testing for purity and consistency.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer international shipping?",
+            "answer": "<p>Yes, we ship to most countries worldwide. International shipping typically takes 7-14 business days depending on your location. Please note that some countries have restrictions on vaping products.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day satisfaction guarantee on all our products. If you're not completely satisfied, you can return unused items in their original packaging for a full refund or exchange.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .faq-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .faq-container {
+    max-width: {{ section.settings.content_max_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section-heading {
+    text-align: {{ section.settings.text_alignment | replace: 'text-', '' }};
+    margin-bottom: 60px;
+  }
+
+  .section-heading h2 {
+    font-size: 42px;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 20px;
+  }
+
+  .section-heading p {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    margin-top: 40px;
+  }
+
+  .faq-item {
+    background-color: {{ section.settings.background_color | color_lighten: 5 }};
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  details {
+    border: none;
+  }
+
+  summary {
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    text-align: left;
+    color: {{ section.settings.text_color }};
+    font-family: inherit;
+  }
+
+  summary:hover {
+    color: {{ section.settings.accent_color }};
+  }
+
+  summary::after {
+    content: '+';
+    font-size: 24px;
+    color: {{ section.settings.accent_color }};
+    transition: transform 0.3s ease;
+  }
+
+  details[open] summary::after {
+    content: '−';
+    transform: rotate(0deg);
+  }
+
+  .faq-answer {
+    padding: 0 20px 20px;
+    color: {{ section.settings.text_color | color_modify: 'alpha', 0.85 }};
+  }
+
+  .show-more-button {
+    display: block;
+    margin: 30px auto 0;
+    padding: 12px 24px;
+    background-color: {{ section.settings.accent_color }};
+    color: {{ section.settings.text_color }};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
+  }
+
+  .show-more-button:hover {
+    opacity: 0.9;
+  }
+
+  .hidden-faq {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .section-heading h2 {
+      font-size: 32px;
+    }
+
+    .section-heading p {
+      font-size: 16px;
+    }
+
+    summary {
+      font-size: 18px;
+    }
+  }
+</style>
+
+<section class="faq-section" id="shopify-section-{{ section.id }}">
+  <div class="faq-container">
+    <div class="section-heading">
+      <h2>{{ section.settings.heading }}</h2>
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+    <div class="faq-list" data-items-to-show="{{ section.settings.items_to_show }}">
+      {% for block in section.blocks %}
+        {% if block.type == 'faq_item' %}
+          <div
+            class="faq-item {% if forloop.index > section.settings.items_to_show %}hidden-faq{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <details>
+              <summary>
+                {{ block.settings.question }}
+              </summary>
+              <div class="faq-answer">
+                {{ block.settings.answer }}
+              </div>
+            </details>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if section.blocks.size > section.settings.items_to_show %}
+      <button
+        class="show-more-button"
+        onclick="this.previousElementSibling.querySelectorAll('.hidden-faq').forEach(item => item.classList.remove('hidden-faq')); this.style.display='none';"
+      >
+        Show More FAQs
+      </button>
+    {% endif %}
+  </div>
+</section>

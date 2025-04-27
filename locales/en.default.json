@@ -373,7 +373,15 @@
       "min_error": "This item has a minimum of {{ min }}",
       "max_error": "This item has a maximum of {{ max }}",
       "step_error": "You can only add this item in increments of {{ step }}"
-    }
+    },
+  },
+   "collections": {
+      "general": {
+         "items_with_count": {
+            "one": "1 item",
+            "other": "{{ count }} items"
+         }
+      },
   },
   "localization": {
     "country_label": "Country/region",
