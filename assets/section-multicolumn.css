@@ -2,6 +2,11 @@
   margin: 0;
 }
 
+
+.multicolumn__title .title {
+  text-align: center;
+}
+
 .multicolumn.no-heading .title {
   display: none;
 }
