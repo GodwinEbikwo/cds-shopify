@@ -9,12 +9,61 @@
  */
 {
   "sections": {
+    "image_with_text_rqjE3H": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_ceVBbr": {
+          "type": "heading",
+          "settings": {
+            "heading": "Améliorez votre expérience de vapotage",
+            "heading_size": "h1"
+          }
+        },
+        "text_xbX8dJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Découvrez une nouvelle dimension dans le monde du vapotage.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_jmeiLR": {
+          "type": "button",
+          "settings": {
+            "button_label": "acheter maintenant",
+            "button_link": "shopify://collections",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_ceVBbr",
+        "text_xbX8dJ",
+        "button_jmeiLR"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/mockup.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "ambient",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-4",
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
     "slideshow": {
       "type": "slideshow",
       "blocks": {
         "slide-0": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/pink-purple-smoke.jpg",
             "image_overlay_opacity": 10,
             "heading": "Browse our latest products",
             "heading_size": "h1",
@@ -23,7 +72,7 @@
             "link": "shopify://collections/all",
             "button_style_secondary": false,
             "show_text_box": true,
-            "box_align": "middle-left",
+            "box_align": "bottom-left",
             "text_alignment": "left",
             "text_alignment_mobile": "left",
             "color_scheme": "scheme-2"
@@ -33,6 +82,7 @@
       "block_order": [
         "slide-0"
       ],
+      "disabled": true,
       "settings": {
         "layout": "full_bleed",
         "slide_height": "adapt_image",
@@ -50,8 +100,8 @@
         "column_4TqQVf": {
           "type": "column",
           "settings": {
-            "title": "Colonne",
-            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "title": "Longue durée de vie de la batterie",
+            "text": "<p>Profitez de séances de vapotage prolongées avec nos appareils dotés de batteries haute capacité</p>",
             "link_label": "",
             "link": ""
           }
@@ -59,8 +109,8 @@
         "column_xnzMem": {
           "type": "column",
           "settings": {
-            "title": "Colonne",
-            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "title": "Qualité supérieure",
+            "text": "<p>Tous nos appareils sont fabriqués avec les meilleurs matériaux et subissent un contrôle qualité rigoureux.</p>",
             "link_label": "",
             "link": ""
           }
@@ -68,8 +118,8 @@
         "column_wrqPJc": {
           "type": "column",
           "settings": {
-            "title": "Colonne",
-            "text": "<p>Associez un texte à une image pour mettre en avant le produit, la collection ou l’article de blog de votre choix. Ajoutez des informations sur la disponibilité ou le style. Vous pouvez même fournir un avis.</p>",
+            "title": "Vapeur douce",
+            "text": "<p>Faites l'expérience d'une production de vapeur douce et constante à chaque bouffée.</p>",
             "link_label": "",
             "link": ""
           }
@@ -80,13 +130,11 @@
         "column_xnzMem",
         "column_wrqPJc"
       ],
-      "custom_css": [
-        ".inline-richtext {text-align: center;}"
-      ],
+      "custom_css": [],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "Pourquoi choisir CDS",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
         "button_label": "",
@@ -97,7 +145,7 @@
         "color_scheme": "scheme-1",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 72,
+        "padding_top": 52,
         "padding_bottom": 72
       }
     },
@@ -199,6 +247,7 @@
     }
   },
   "order": [
+    "image_with_text_rqjE3H",
     "slideshow",
     "multicolumn_fhJamc",
     "featured-collection-0",

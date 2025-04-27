@@ -212,23 +212,23 @@
 .product__title h1,
 .product__title h2,
 .product__title .h1 {
-    color: var(--dynamic-primary-color) !important;
+    color: inherit !important;
 }
 
 /* Dynamic color scheme for mega menu */
 .mega-menu__content {
-    background-color: #fff !important;
+    background-color: var(--dynamic-primary-color) !important;
 }
 
 .mega-menu__link {
-    color: var(--dynamic-primary-color) !important;
+    color: inherit !important;
 }
 
 .mega-menu__link:hover,
 .mega-menu__link--active {
-    color: var(--dynamic-accent-color) !important;
+    color: inherit !important;
 }
 
 .mega-menu__category-title {
-    color: var(--dynamic-primary-color) !important;
+    color: inherit !important;
 }

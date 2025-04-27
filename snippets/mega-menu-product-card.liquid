@@ -24,14 +24,16 @@
       {% endif %}
     </div>
     <h4 class="mega-menu__product-title">{{ product.title }}</h4>
-    <div class="mega-menu__product-price">
-      {% if product.compare_at_price > product.price %}
-        <span class="mega-menu__price--sale">{{ product.price | money }}</span>
-        <s class="mega-menu__price--regular">{{ product.compare_at_price | money }}</s>
-      {% else %}
-        <span class="mega-menu__price">{{ product.price | money }}</span>
-      {% endif %}
-    </div>
+    {% comment %}
+      <div class="mega-menu__product-price">
+        {% if product.compare_at_price > product.price %}
+          <span class="mega-menu__price--sale">{{ product.price | money }}</span>
+          <s class="mega-menu__price--regular">{{ product.compare_at_price | money }}</s>
+        {% else %}
+          <span class="mega-menu__price">{{ product.price | money }}</span>
+        {% endif %}
+      </div>
+    {% endcomment %}
   </a>
   <a href="{{ product.url }}" class="mega-menu__shop-now-button">
     {{ 'products.product.add_to_cart' | t }}

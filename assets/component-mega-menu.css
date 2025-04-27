@@ -19,6 +19,24 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.mega-menu__product-link {
+  display: block;
+  text-decoration: none;
+}
+.mega-menu__product-link:hover {
+  text-decoration: none;
+}
+.mega-menu__product-link:focus {
+  outline: none;
+}
+.mega-menu__product-link:focus-visible {
+  outline: 2px solid rgb(var(--color-button));
+  outline-offset: 2px;
+}
+.mega-menu__product-link:focus-visible .mega-menu__product-image {
+  box-shadow: 0 0 0 2px rgb(var(--color-button));
+}
+
 .shopify-section-header-sticky .mega-menu__content {
   max-height: calc(100vh - var(--header-bottom-position-desktop, 20rem) - 4rem);
 }
@@ -158,6 +176,7 @@
   margin: 1rem 0;
   color: rgb(var(--color-foreground));
   font-weight: 500;
+  text-decoration: none;
 }
 
 .mega-menu__product-price {
