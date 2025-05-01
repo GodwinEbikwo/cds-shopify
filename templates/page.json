@@ -11,13 +11,27 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "custom_css": [],
       "settings": {
         "padding_top": 36,
-        "padding_bottom": 28
+        "padding_bottom": 12
+      }
+    },
+    "rich_text_8Ea8BE": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "rich_text_8Ea8BE"
   ]
 }

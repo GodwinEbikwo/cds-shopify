@@ -37,6 +37,7 @@
         "paragraph",
         "email-form"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "color_scheme": "scheme-3",
@@ -47,6 +48,35 @@
     },
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_Ltzrem": {
+          "type": "link_list",
+          "settings": {
+            "heading": "CATALOGUE",
+            "menu": "main-menu"
+          }
+        },
+        "link_list_FLW33g": {
+          "type": "link_list",
+          "settings": {
+            "heading": "INFORMATION",
+            "menu": "store-information"
+          }
+        },
+        "image_e6UUaM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CDS_All_White_Main.png",
+            "image_width": 265,
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_Ltzrem",
+        "link_list_FLW33g",
+        "image_e6UUaM"
+      ],
       "settings": {
         "color_scheme": "scheme-3",
         "newsletter_enable": false,

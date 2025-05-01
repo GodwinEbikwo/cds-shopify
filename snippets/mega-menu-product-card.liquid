@@ -24,7 +24,7 @@
       {% endif %}
     </div>
     <h4 class="mega-menu__product-title">{{ product.title }}</h4>
-    {% comment %}
+    <!--
       <div class="mega-menu__product-price">
         {% if product.compare_at_price > product.price %}
           <span class="mega-menu__price--sale">{{ product.price | money }}</span>
@@ -33,7 +33,7 @@
           <span class="mega-menu__price">{{ product.price | money }}</span>
         {% endif %}
       </div>
-    {% endcomment %}
+    -->
   </a>
   <a href="{{ product.url }}" class="mega-menu__shop-now-button">
     {{ 'products.product.add_to_cart' | t }}

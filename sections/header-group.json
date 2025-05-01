@@ -11,10 +11,38 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "announcement_bar_Hftp7N": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_YHQpzt": {
+          "type": "announcement",
+          "settings": {
+            "text": "WARNING: This product contains nicotine. Nicotine is an addictive chemical. The above warning applies when the product is used with e-liquids containing nicotine.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_YHQpzt"
+      ],
+      "custom_css": [
+        ".announcement-bar {max-width: 70rem; margin: 0 auto;}"
+      ],
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 6,
+        "color_scheme": "scheme-2",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
     "header": {
       "type": "header",
       "custom_css": [
-        "nav{text-transform: uppercase;}"
+        "nav {text-transform: uppercase;}"
       ],
       "settings": {
         "logo_position": "top-center",
@@ -36,19 +64,28 @@
           "bar-series-100ml-fraise-framboise-cerise",
           "bar-series-100ml-limonade-framboise-bleue"
         ],
-        "kits_featured_products": [],
+        "kits_featured_products": [
+          "dr-frost-100ml-glace-fraise-noix-de-coco",
+          "dr-frost-100ml-limonade-noix-de-coco-glacee",
+          "dr-frost-100ml-mangue-ananas-glacee"
+        ],
         "eliquids_featured_products": [
           "bar-series-100ml-limonade-framboise-bleue",
           "bar-series-100ml-limonade-rose",
           "bar-series-100ml-litchi-glacee"
         ],
-        "accessories_featured_products": [],
+        "accessories_featured_products": [
+          "bar-series-100ml-limonade-rose",
+          "bar-series-10ml-limonade-rose",
+          "bar-series-10ml-litchi-glacee"
+        ],
         "drifter_featured_products": [],
         "specials_featured_products": []
       }
     }
   },
   "order": [
+    "announcement_bar_Hftp7N",
     "header"
   ]
 }
