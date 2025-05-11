@@ -9,13 +9,13 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/CDS_All_White_Main.png",
-    "logo_width": 80,
+    "logo": "shopify://shop_images/Negative_Space_Full1.png",
+    "logo_width": 100,
     "type_header_font": "nunito_sans_n4",
     "heading_scale": 110,
     "type_body_font": "nunito_sans_n4",
     "body_scale": 105,
-    "page_width": 1200,
+    "page_width": 1400,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 28,
     "spacing_grid_vertical": 28,

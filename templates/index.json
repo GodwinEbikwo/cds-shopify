@@ -15,21 +15,21 @@
         "heading_ceVBbr": {
           "type": "heading",
           "settings": {
-            "heading": "Améliorez votre expérience de vapotage",
+            "heading": "Des prix légers, des sensations fortes",
             "heading_size": "h1"
           }
         },
         "text_xbX8dJ": {
           "type": "text",
           "settings": {
-            "text": "<p>Découvrez une nouvelle dimension dans le monde du vapotage.</p>",
+            "text": "<p>Des prix imbattables qui vous donnent le contrôle.</p>",
             "text_style": "body"
           }
         },
         "button_jmeiLR": {
           "type": "button",
           "settings": {
-            "button_label": "acheter maintenant",
+            "button_label": "ACHETER MAINTENANT",
             "button_link": "shopify://collections",
             "button_style_secondary": false
           }
@@ -100,8 +100,8 @@
         "column_4TqQVf": {
           "type": "column",
           "settings": {
-            "title": "Longue durée de vie de la batterie",
-            "text": "<p>Profitez de séances de vapotage prolongées avec nos appareils dotés de batteries haute capacité</p>",
+            "title": "Une équipe fiable",
+            "text": "<p>Profité d'un service client excellent pour vous guider a travers le monde de la vape.</p>",
             "link_label": "",
             "link": ""
           }
@@ -110,7 +110,7 @@
           "type": "column",
           "settings": {
             "title": "Qualité supérieure",
-            "text": "<p>Tous nos appareils sont fabriqués avec les meilleurs matériaux et subissent un contrôle qualité rigoureux.</p>",
+            "text": "<p>Tous nos appareils et liquides sont fabriqués avec les meilleurs matériaux et subissent un contrôle qualité rigoureux.</p>",
             "link_label": "",
             "link": ""
           }
@@ -156,13 +156,13 @@
       ],
       "settings": {
         "collection": "all",
-        "products_to_show": 4,
-        "title": "Trending this week",
+        "products_to_show": 8,
+        "title": "Produits du moment",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 2,
+        "columns_desktop": 4,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": false,
@@ -206,14 +206,14 @@
           "type": "faq_item",
           "settings": {
             "question": "Vos e-liquides sont-ils sûrs ?",
-            "answer": "<p>Oui, tous nos e-liquides sont fabriqués dans des installations agréées par la FDA, à partir d'ingrédients de qualité pharmaceutique. Nous effectuons des tests rigoureux pour garantir leur pureté et leur consistance.</p>"
+            "answer": "<p>Oui, tous nos e-liquides sont fabriqués dans des installations agréées par l'ANSM (Agence nationale de sécurité du médicament et des produits de santé) pour nos produits Français, et par la \"Medicines and Healthcare products Regulatory Agency\", pour nos produits Britannique, à partir d'ingrédients de qualité pharmaceutique. Nous effectuons des tests rigoureux pour garantir leur pureté et leur consistance.</p>"
           }
         },
         "faq_item_BfFNa8": {
           "type": "faq_item",
           "settings": {
             "question": "Proposez-vous une livraison internationale ?",
-            "answer": "<p>Non, nous ne le faisons pas pour le moment, inscrivez-vous à nos e-mails pour être informé des mises à jour.</p>"
+            "answer": "<p>Non, malheureusement nous livrons qu'en France pour l'instant, inscrivez-vous à nos e-mails pour être informé des mises à jour.</p>"
           }
         },
         "faq_item_AMrUrB": {
@@ -232,8 +232,8 @@
       ],
       "name": "FAQ Section",
       "settings": {
-        "heading": "Frequently Asked Questions",
-        "subheading": "Get answers to the most common questions about our products and vaping.",
+        "heading": "Foire au Questions",
+        "subheading": "Obtenez des réponses aux questions les plus courantes sur nos produits et le vapotage.",
         "background_color": "#121212",
         "text_color": "#ffffff",
         "accent_color": "#ffffff",

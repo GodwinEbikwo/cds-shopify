@@ -9,8 +9,50 @@
  */
 {
   "sections": {
+    "rich_text_6jChie": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_JynLkT": {
+          "type": "heading",
+          "settings": {
+            "heading": "Contactez-nous",
+            "heading_size": "h1"
+          }
+        },
+        "text_cgnjMk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Partagez des informations sur votre marque. Décrivez un produit, partagez des annonces ou souhaitez la bienvenue à vos clients dans votre boutique.</p>"
+          }
+        },
+        "text_HtjPGY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>some other text for store information and telephone etc</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_JynLkT",
+        "text_cgnjMk",
+        "text_HtjPGY"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "main": {
       "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "h1 {text-align: center;}"
+      ],
       "settings": {
         "padding_top": 36,
         "padding_bottom": 0
@@ -28,6 +70,7 @@
     }
   },
   "order": [
+    "rich_text_6jChie",
     "main",
     "form"
   ]

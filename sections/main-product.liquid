@@ -201,77 +201,33 @@
                   {{ product.description }}
                 </div>
 
-                {%- if product.metafields.custom.pourquoi_choisir_ce_gout
-                  or product.metafields.custom.conseils_d_utilisation
-                  or product.metafields.custom.caract_ristiques_techniques
-                  or product.metafields.custom.shipping_info
-                -%}
-                  <div class="product__additional-info">
-                    {%- if product.metafields.custom.pourquoi_choisir_ce_gout -%}
-                      <div class="product__info-section accordion">
-                        <details>
-                          <summary>
-                            <div class="summary__title">
-                              <h3 class="product__info-title">Pourquoi choisir ce goût?</h3>
-                              {{ 'icon-caret.svg' | inline_asset_content }}
-                            </div>
-                          </summary>
-                          <div class="product__info-content rte">
-                            {{ product.metafields.custom.pourquoi_choisir_ce_gout | metafield_tag }}
-                          </div>
-                        </details>
-                      </div>
-                    {%- endif -%}
+                {% assign info_sections = "points_forts:Points forts|pourquoi_choisir_ce_gout:Pourquoi choisir ce goût?|conseils_d_utilisation:Conseils d'utilisation|caract_ristiques_techniques:Caractéristiques techniques|shipping_info:Shipping Information|sample_text_one:Sample Text One|sample_text_two:Sample Text Two|sample_text_three:Sample Text Three|sample_text_four:Sample Text Four|sample_text_five:Sample Text Five"
+                  | split: '|'
+                %}
 
-                    {%- if product.metafields.custom.conseils_d_utilisation -%}
+                <div class="product__additional-info">
+                  {% for section in info_sections %}
+                    {% assign parts = section | split: ':' %}
+                    {% assign metafield_key = parts[0] %}
+                    {% assign label = parts[1] %}
+                    {% assign metafield_value = product.metafields.custom[metafield_key] %}
+                    {% if metafield_value %}
                       <div class="product__info-section accordion">
                         <details>
                           <summary>
                             <div class="summary__title">
-                              <h3 class="product__info-title">Conseils d'utilisation</h3>
+                              <h3 class="product__info-title">{{ label }}</h3>
                               {{ 'icon-caret.svg' | inline_asset_content }}
                             </div>
                           </summary>
                           <div class="product__info-content rte">
-                            {{ product.metafields.custom.conseils_d_utilisation | metafield_tag }}
+                            {{ metafield_value | metafield_tag }}
                           </div>
                         </details>
                       </div>
-                    {%- endif -%}
-
-                    {%- if product.metafields.custom.caract_ristiques_techniques -%}
-                      <div class="product__info-section accordion">
-                        <details>
-                          <summary>
-                            <div class="summary__title">
-                              <h3 class="product__info-title">Caractéristiques techniques</h3>
-                              {{ 'icon-caret.svg' | inline_asset_content }}
-                            </div>
-                          </summary>
-                          <div class="product__info-content rte">
-                            {{ product.metafields.custom.caract_ristiques_techniques | metafield_tag }}
-                          </div>
-                        </details>
-                      </div>
-                    {%- endif -%}
-
-                    {%- if product.metafields.custom.shipping_info -%}
-                      <div class="product__info-section accordion">
-                        <details>
-                          <summary>
-                            <div class="summary__title">
-                              <h3 class="product__info-title">Shipping Information</h3>
-                              {{ 'icon-caret.svg' | inline_asset_content }}
-                            </div>
-                          </summary>
-                          <div class="product__info-content rte">
-                            {{ product.metafields.custom.shipping_info | metafield_tag }}
-                          </div>
-                        </details>
-                      </div>
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
+                    {% endif %}
+                  {% endfor %}
+                </div>
               {%- when 'sku' -%}
                 <p
                   class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"

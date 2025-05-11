@@ -70,9 +70,15 @@
                         {% endif %}
 
                         {% if childlink.url contains '/collections' %}
-                          <a href="{{ childlink.url }}" class="mega-menu__link mega-menu__shop-all">
-                            {{- trigger_text -}}
-                          </a>
+                          {% if trigger_text == 'Shop All' %}
+                            <a href="/collections" class="mega-menu__link mega-menu__shop-all">
+                              {{- trigger_text -}}
+                            </a>
+                          {% else %}
+                            <a href="{{ childlink.url }}" class="mega-menu__link mega-menu__shop-all">
+                              {{- trigger_text -}}
+                            </a>
+                          {% endif %}
                         {% endif %}
                       </div>
                     {%- endfor -%}
@@ -88,13 +94,7 @@
 
                     {% case current_collection %}
                       {% when '' %}
-                        {% if section.settings.featured_products != blank %}
-                          <div class="mega-menu__products-grid">
-                            {% for product in section.settings.featured_products limit: 3 %}
-                              {% render 'mega-menu-product-card', product: product %}
-                            {% endfor %}
-                          </div>
-                        {% endif %}
+                        {% comment %}Shop All section - no featured products{% endcomment %}
                       {% when 'kits' %}
                         {% if section.settings.kits_featured_products != blank %}
                           <div class="mega-menu__products-grid">

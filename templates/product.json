@@ -71,6 +71,7 @@
         "description",
         "share"
       ],
+      "custom_css": [],
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-3",
